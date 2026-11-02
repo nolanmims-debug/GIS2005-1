@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -30,25 +29,29 @@
 
       // Paste the url into a browser's address bar to download and view the attributes
       // in the GeoJSON file. These attributes include:
-      const template = {
-        title: "#TBD",
-        content: "#TBD",
-      };
-
-      let myIcon = {
-        url: "#TBD",
-        width: "32px",
-        height: "32px"
-      };
-      
-      const SimpleRenderer = await $arcgis.import("@arcgis/core/renderers/SimpleRenderer.js");
-      const myRenderer = new SimpleRenderer({
-        symbol: new PictureMarkerSymbol(myIcon)
-      });
+   const template = {
+  title: "{name}",
+  content: `
+    <p>
+      <strong>Wildfire Information</strong>
+    </p>
+    <p>
+      <a href="{link}" target="_blank"
+         rel="noopener noreferrer">
+        Read news article
+      </a>
+    </p>
+  `
+};      
+     const myIcon = {
+  url: "data/fire.png",
+  width: "24px",
+  height: "24px"
+};
       // Point to the URL location, and set up layer properties.
       const layer = new GeoJSONLayer({
-        url: "#TBD",
-        copyright: "#TBD",
+        url: "data/wildfire.json",
+        copyright: "Denver Post and Daily Camera",
         popupTemplate: template,
         renderer: myRenderer
       });
